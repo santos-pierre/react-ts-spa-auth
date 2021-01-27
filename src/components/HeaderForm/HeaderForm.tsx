@@ -3,8 +3,8 @@ import { ReactComponent as Logo } from './../../logo.svg';
 
 type HeaderFormProps = {
     title: string;
-    subTitle: string;
-    link: string;
+    subTitle?: string;
+    link?: string;
 };
 
 const HeaderForm = ({ title, subTitle = '', link = '' }: HeaderFormProps) => {
