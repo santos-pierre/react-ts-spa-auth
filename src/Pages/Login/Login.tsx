@@ -39,7 +39,7 @@ const Login = () => {
             <HeaderForm
                 title="Sign in to your account"
                 subTitle="Create a new one"
-                link="/register"
+                link={getRoute('register').path}
             />
             <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
                 <div className="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
