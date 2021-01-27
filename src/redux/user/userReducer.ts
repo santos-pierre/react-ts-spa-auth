@@ -1,6 +1,6 @@
 import { SET_USER, UserActionTypes, UserState } from './userTypes';
 
-const INITIAL_STATE: UserState = {
+export const INITIAL_STATE: UserState = {
     name: '',
     email: '',
     is_verified: false,
