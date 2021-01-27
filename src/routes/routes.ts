@@ -10,6 +10,10 @@ const ROUTES: Array<RouteType> = [
         path: '/register',
     },
     {
+        name: 'forgot-password',
+        path: '/forgot-password',
+    },
+    {
         name: 'home',
         path: '/',
     },

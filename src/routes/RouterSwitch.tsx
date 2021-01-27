@@ -6,6 +6,7 @@ import GuardedRoute from './GuardedRoute';
 import { getRoute } from './routes';
 import Register from '../Pages/Register/Register';
 import Dashboard from '../Pages/Dashboard/Dashboard';
+import ForgotPassword from '../Pages/ForgotPassword/ForgotPassword';
 
 const RouterSwitch = () => {
     return (
@@ -23,6 +24,11 @@ const RouterSwitch = () => {
             <PublicRoute
                 component={Register}
                 path={getRoute('register').path}
+                exact={true}
+            />
+            <PublicRoute
+                component={ForgotPassword}
+                path={getRoute('forgot-password').path}
                 exact={true}
             />
         </Switch>
