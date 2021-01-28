@@ -14,11 +14,13 @@ const Login = () => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [errors, setErrors] = useState<ErrorsType>();
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const history = useHistory();
 
     const login = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setErrors({ email: [] });
+        setIsLoading(true);
         try {
             if (email.trim() && password.trim()) {
                 await userClient.login({
@@ -30,7 +32,15 @@ const Login = () => {
         } catch ({ errors, status }) {
             if (status === 422) {
                 setErrors(errors);
+            } else if (status === 429) {
+                setErrors({ email: ['Too many request! Try again Later'] });
+            } else {
+                setErrors({
+                    email: ['Impossible to reach the server! Try again later'],
+                });
             }
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -75,7 +85,7 @@ const Login = () => {
                                 </Link>
                             </div>
                         </div>
-                        <ButtonForm>
+                        <ButtonForm isLoading={isLoading}>
                             <span>Login</span>
                         </ButtonForm>
                     </form>

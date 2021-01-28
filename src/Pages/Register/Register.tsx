@@ -20,10 +20,12 @@ const Register = () => {
         ''
     );
     const [errors, setErrors] = useState<ErrorsType>();
+    const [isLoading, setIsLoading] = useState<boolean>();
     const history = useHistory();
 
     const register = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setIsLoading(true);
         setErrors({ email: [], name: [], password: [] });
         try {
             if (email.trim() && password.trim() && name.trim()) {
@@ -38,7 +40,21 @@ const Register = () => {
         } catch ({ errors, status }) {
             if (status === 422) {
                 setErrors(errors);
+            } else if (status === 429) {
+                setErrors({
+                    email: ['Too many request! Try again Later'],
+                    name: [],
+                    password: [],
+                });
+            } else {
+                setErrors({
+                    email: ['Impossible to reach the server! Try again later'],
+                    name: [],
+                    password: [],
+                });
             }
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -97,7 +113,7 @@ const Register = () => {
                             value={passwordConfirmation}
                             handleValue={setPasswordConfirmation}
                         />
-                        <ButtonForm>
+                        <ButtonForm isLoading={isLoading}>
                             <span>Register</span>
                         </ButtonForm>
                     </form>

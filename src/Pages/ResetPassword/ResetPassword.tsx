@@ -21,10 +21,12 @@ const ResetPassword = () => {
     const [passwordConfirmation, setPasswordConfirmation] = useState<string>(
         ''
     );
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const resetPassword = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setErrors({ email: [], password: [] });
+        setIsLoading(true);
         try {
             if (password.trim() && passwordConfirmation.trim()) {
                 await usersClient.resetPassword({
@@ -35,10 +37,22 @@ const ResetPassword = () => {
                 });
                 history.push(getRoute('login').path);
             }
-        } catch (error) {
-            if (error.status === 422) {
-                setErrors(error.errors);
+        } catch ({ errors, status }) {
+            if (status === 422) {
+                setErrors(errors);
+            } else if (status === 429) {
+                setErrors({
+                    email: ['Too many request! Try again Later'],
+                    password: [],
+                });
+            } else {
+                setErrors({
+                    email: ['Impossible to reach the server! Try again later'],
+                    password: [],
+                });
             }
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -77,7 +91,7 @@ const ResetPassword = () => {
                     value={passwordConfirmation}
                     handleValue={setPasswordConfirmation}
                 />
-                <ButtonForm>
+                <ButtonForm isLoading={isLoading}>
                     <span>Change Password</span>
                 </ButtonForm>
             </form>

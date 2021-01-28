@@ -13,9 +13,11 @@ const ForgotPassword = () => {
     const [errors, setErrors] = useState<ErrorsType>();
     const [email, setEmail] = useState<string>('');
     const [success, setSuccess] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const sendEmailReset = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setIsLoading(true);
         try {
             if (email.trim()) {
                 await usersClient.forgotPassword({ email: email });
@@ -24,7 +26,15 @@ const ForgotPassword = () => {
         } catch ({ errors, status }) {
             if (status === 422) {
                 setErrors(errors);
+            } else if (status === 429) {
+                setErrors({ email: ['Too many request! Try again Later'] });
+            } else {
+                setErrors({
+                    email: ['Impossible to reach the server! Try again later'],
+                });
             }
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -47,7 +57,7 @@ const ForgotPassword = () => {
                             errors && errors.email ? errors.email[0] : undefined
                         }
                     />
-                    <ButtonForm>
+                    <ButtonForm isLoading={isLoading}>
                         <span>Send Reset Link</span>
                     </ButtonForm>
                 </form>
