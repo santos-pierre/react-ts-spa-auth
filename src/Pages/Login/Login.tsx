@@ -11,8 +11,8 @@ type ErrorsType = {
 };
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
     const [errors, setErrors] = useState<ErrorsType>();
     const history = useHistory();
 

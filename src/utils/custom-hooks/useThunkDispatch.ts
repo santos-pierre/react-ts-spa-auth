@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../redux/types/AppDispatch';
+import { AppDispatch } from '../../redux/types/AppDispatch';
 
 const useThunkDispatch = (): AppDispatch => {
     return useDispatch<AppDispatch>();

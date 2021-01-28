@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Redirect, Route, RouteProps } from 'react-router-dom';
 import Loading from '../components/Loading/Loading';
-import useThunkDispatch from '../custom-hooks/useThunkDispatch';
+import useThunkDispatch from '../utils/custom-hooks/useThunkDispatch';
 import { getAuthUser } from '../redux/user/userAction';
 import { getRoute } from './routes';
 

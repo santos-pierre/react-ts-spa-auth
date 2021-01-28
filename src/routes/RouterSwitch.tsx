@@ -7,6 +7,7 @@ import { getRoute } from './routes';
 import Register from '../Pages/Register/Register';
 import Dashboard from '../Pages/Dashboard/Dashboard';
 import ForgotPassword from '../Pages/ForgotPassword/ForgotPassword';
+import ResetPassword from '../Pages/ResetPassword/ResetPassword';
 
 const RouterSwitch = () => {
     return (
@@ -30,6 +31,10 @@ const RouterSwitch = () => {
                 component={ForgotPassword}
                 path={getRoute('forgot-password').path}
                 exact={true}
+            />
+            <PublicRoute
+                component={ResetPassword}
+                path={getRoute('reset-password').path}
             />
         </Switch>
     );

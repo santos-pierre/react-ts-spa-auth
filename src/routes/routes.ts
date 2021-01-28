@@ -17,6 +17,10 @@ const ROUTES: Array<RouteType> = [
         name: 'home',
         path: '/',
     },
+    {
+        name: 'reset-password',
+        path: '/reset-password',
+    },
 ];
 
 const getAllRoutes = (): Array<RouteType> => {

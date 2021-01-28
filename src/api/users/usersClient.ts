@@ -12,7 +12,7 @@ type ForgotPasswordPayload = {
 };
 
 type ResetPasswordPayload = {
-    token: string;
+    token: string | null;
     email: string;
     password: string;
     password_confirmation: string;
