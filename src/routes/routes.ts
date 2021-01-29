@@ -14,12 +14,16 @@ const ROUTES: Array<RouteType> = [
         path: '/forgot-password',
     },
     {
+        name: 'reset-password',
+        path: '/reset-password',
+    },
+    {
         name: 'home',
         path: '/',
     },
     {
-        name: 'reset-password',
-        path: '/reset-password',
+        name: 'profile',
+        path: '/profile',
     },
 ];
 

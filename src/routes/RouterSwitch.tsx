@@ -8,6 +8,7 @@ import Register from '../Pages/Register/Register';
 import Dashboard from '../Pages/Dashboard/Dashboard';
 import ForgotPassword from '../Pages/ForgotPassword/ForgotPassword';
 import ResetPassword from '../Pages/ResetPassword/ResetPassword';
+import UserProfile from '../Pages/Dashboard/Profile/Profile';
 
 const RouterSwitch = () => {
     return (
@@ -15,6 +16,11 @@ const RouterSwitch = () => {
             <GuardedRoute
                 component={Dashboard}
                 path={getRoute('home').path}
+                exact={true}
+            />
+            <GuardedRoute
+                component={UserProfile}
+                path={getRoute('profile').path}
                 exact={true}
             />
             <PublicRoute
