@@ -66,7 +66,7 @@ const userClient = {
         await client.get('/sanctum/csrf-cookie');
         await client.post('/register', payload);
     },
-    async sendVerification(payload: SendEmailVerificationPayload) {
+    async sendVerification(payload: SendEmailVerificationPayload | {}) {
         await client.post('/email/verification-notification', payload);
     },
     async updateUser(payload: UpdateUserPayload) {
