@@ -15,10 +15,10 @@ const ButtonForm = ({
         <button
             {...rest}
             type={type}
-            className={`flex items-center justify-center w-full px-4 py-2 space-x-4 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm ${
+            className={`flex items-center justify-center w-full px-4 py-2 space-x-4 text-sm font-bold text-white bg-primary-500 border border-transparent rounded-md shadow-sm ${
                 isLoading
                     ? 'bg-opacity-75 cursor-not-allowed'
-                    : 'hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2'
+                    : 'hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2'
             }`}
             disabled={isLoading}
         >

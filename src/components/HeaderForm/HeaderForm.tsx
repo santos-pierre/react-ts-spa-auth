@@ -20,12 +20,12 @@ const HeaderForm = ({ title, subTitle = '', link = '' }: HeaderFormProps) => {
                     {link ? (
                         <Link
                             to={link}
-                            className="ml-1 font-medium text-indigo-600 hover:text-indigo-500"
+                            className="ml-1 font-medium text-primary-600 hover:text-primary-500"
                         >
                             {subTitle}
                         </Link>
                     ) : (
-                        <span className="ml-1 font-medium text-indigo-600 hover:text-indigo-500">
+                        <span className="ml-1 font-medium text-primary-600 hover:text-primary-500">
                             {subTitle}
                         </span>
                     )}

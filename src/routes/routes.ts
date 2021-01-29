@@ -23,8 +23,23 @@ const ROUTES: Array<RouteType> = [
     },
 ];
 
+const NavBarLinks: Array<RouteType> = [
+    {
+        name: 'Dashboard',
+        path: '/',
+    },
+    {
+        name: 'Profile',
+        path: '/profile',
+    },
+];
+
 const getAllRoutes = (): Array<RouteType> => {
     return ROUTES;
+};
+
+const getAllNavLinks = (): Array<RouteType> => {
+    return NavBarLinks;
 };
 
 const getRoute = (name: string, params?: object): RouteType => {
@@ -37,4 +52,4 @@ const getRoute = (name: string, params?: object): RouteType => {
     return route;
 };
 
-export { getAllRoutes, getRoute };
+export { getAllRoutes, getRoute, getAllNavLinks };

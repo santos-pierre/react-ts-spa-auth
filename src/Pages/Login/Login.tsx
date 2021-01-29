@@ -27,20 +27,22 @@ const Login = () => {
                     email: email,
                     password: password,
                 });
-                history.push(getRoute('dashboard').path);
             }
         } catch ({ errors, status }) {
             if (status === 422) {
                 setErrors(errors);
             } else if (status === 429) {
                 setErrors({ email: ['Too many request! Try again Later'] });
-            } else {
+            } else if (status === 500) {
                 setErrors({
                     email: ['Impossible to reach the server! Try again later'],
                 });
             }
         } finally {
             setIsLoading(false);
+            if (!errors) {
+                history.push(getRoute('home').path);
+            }
         }
     };
 
@@ -79,7 +81,7 @@ const Login = () => {
                             <div className="text-sm">
                                 <Link
                                     to={getRoute('forgot-password').path}
-                                    className="font-medium text-indigo-600 hover:text-indigo-500"
+                                    className="font-medium text-primary-600 hover:text-primary-500"
                                 >
                                     Forgot your password?
                                 </Link>

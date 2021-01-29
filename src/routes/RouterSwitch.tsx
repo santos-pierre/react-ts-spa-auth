@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch } from 'react-router-dom';
+import { Redirect, Switch } from 'react-router-dom';
 import Login from '../Pages/Login/Login';
 import PublicRoute from './PublicRoute';
 import GuardedRoute from './GuardedRoute';
@@ -36,6 +36,7 @@ const RouterSwitch = () => {
                 component={ResetPassword}
                 path={getRoute('reset-password').path}
             />
+            <Redirect to={getRoute('home').path} />
         </Switch>
     );
 };

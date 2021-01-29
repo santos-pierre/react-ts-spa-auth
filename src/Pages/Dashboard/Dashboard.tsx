@@ -1,5 +1,11 @@
+import Auth from '../../layouts/Auth/Auth';
+
 const Dashboard = () => {
-    return <h1>Dashboard Page</h1>;
+    return (
+        <Auth>
+            <h1>Hello World</h1>
+        </Auth>
+    );
 };
 
 export default Dashboard;
