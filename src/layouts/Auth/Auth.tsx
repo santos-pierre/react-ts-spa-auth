@@ -13,7 +13,7 @@ const Auth = ({ children }: AuthProps) => {
     const user = useSelector(getUser);
 
     return (
-        <div className="relative">
+        <div className="h-full dark:bg-neutral-800 bg-neutral-200">
             <NavBarDesktop />
             <main>
                 <div className="py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">

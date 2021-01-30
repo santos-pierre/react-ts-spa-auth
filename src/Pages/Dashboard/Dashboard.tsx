@@ -3,7 +3,9 @@ import Auth from '../../layouts/Auth/Auth';
 const Dashboard = () => {
     return (
         <Auth>
-            <h1>Hello World</h1>
+            <div>
+                <h1>Hello World</h1>
+            </div>
         </Auth>
     );
 };

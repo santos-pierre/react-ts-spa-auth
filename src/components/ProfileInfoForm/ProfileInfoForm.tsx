@@ -60,11 +60,11 @@ const ProfileInfoForm = () => {
             <section aria-labelledby="payment_details_heading">
                 <form onSubmit={updateProfile}>
                     <div className="shadow sm:rounded-md sm:overflow-hidden">
-                        <div className="px-4 py-6 bg-white sm:p-6">
+                        <div className="px-4 py-6 bg-white dark:bg-neutral-700 sm:p-6 text-neutral-900 dark:text-neutral-200">
                             <div>
                                 <h2
                                     id="payment_details_heading"
-                                    className="text-lg font-medium leading-6 text-gray-900"
+                                    className="text-lg font-medium leading-6"
                                 >
                                     Profile Info
                                 </h2>
@@ -96,7 +96,7 @@ const ProfileInfoForm = () => {
                                 />
                             </div>
                         </div>
-                        <div className="px-4 py-3 text-right bg-gray-50 sm:px-6">
+                        <div className="px-4 py-3 text-right bg-neutral-50 dark:bg-neutral-600 sm:px-6">
                             <button
                                 disabled={
                                     !(
@@ -105,7 +105,7 @@ const ProfileInfoForm = () => {
                                     )
                                 }
                                 type="submit"
-                                className={`bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 ${
+                                className={`dark:bg-primary-600 bg-primary-500 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-700 ${
                                     !(
                                         user.name !== name ||
                                         user.email !== email

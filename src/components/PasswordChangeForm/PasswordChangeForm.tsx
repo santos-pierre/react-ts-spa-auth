@@ -58,11 +58,11 @@ const PasswordChangeForm = () => {
             <section aria-labelledby="payment_details_heading">
                 <form onSubmit={updatePassword}>
                     <div className="shadow sm:rounded-md sm:overflow-hidden">
-                        <div className="px-4 py-6 bg-white sm:p-6">
+                        <div className="px-4 py-6 bg-white dark:bg-neutral-700 sm:p-6 text-neutral-900 dark:text-neutral-200">
                             <div>
                                 <h2
                                     id="payment_details_heading"
-                                    className="text-lg font-medium leading-6 text-gray-900"
+                                    className="text-lg font-medium leading-6"
                                 >
                                     Update Password
                                 </h2>
@@ -105,10 +105,10 @@ const PasswordChangeForm = () => {
                                 />
                             </div>
                         </div>
-                        <div className="px-4 py-3 text-right bg-gray-50 sm:px-6">
+                        <div className="px-4 py-3 text-right bg-neutral-50 dark:bg-neutral-600 sm:px-6">
                             <button
                                 type="submit"
-                                className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700"
+                                className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm dark:bg-primary-600 bg-primary-500 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-700"
                             >
                                 Save
                             </button>
