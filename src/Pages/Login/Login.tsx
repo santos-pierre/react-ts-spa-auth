@@ -45,7 +45,7 @@ const Login = () => {
             }
         } finally {
             setIsLoading(false);
-            if (!hasErrors) {
+            if (!hasErrors.current) {
                 history.push(getRoute('home').path);
             }
         }
