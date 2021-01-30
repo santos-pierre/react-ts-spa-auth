@@ -4,6 +4,7 @@ import usersClient from '../../api/users/usersClient';
 import ButtonForm from '../../components/ButtonForm/ButtonForm';
 import HeaderForm from '../../components/HeaderForm/HeaderForm';
 import InputForm from '../../components/InputForm/Inputform';
+import Guest from '../../layouts/Guest/Guest';
 
 type ErrorsType = {
     email: Array<string> | undefined;
@@ -39,7 +40,7 @@ const ForgotPassword = () => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen">
+        <Guest>
             <HeaderForm title="Reset Password Link" />
             {!success && (
                 <form
@@ -86,7 +87,7 @@ const ForgotPassword = () => {
                     <span className="text-2xl font-bold">Email Sent!</span>
                 </div>
             </Transition>
-        </div>
+        </Guest>
     );
 };
 

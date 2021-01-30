@@ -4,6 +4,7 @@ import usersClient from '../../api/users/usersClient';
 import ButtonForm from '../../components/ButtonForm/ButtonForm';
 import HeaderForm from '../../components/HeaderForm/HeaderForm';
 import InputForm from '../../components/InputForm/Inputform';
+import Guest from '../../layouts/Guest/Guest';
 import { getRoute } from '../../routes/routes';
 import { useQuery } from '../../utils/custom-hooks/useQuery';
 
@@ -57,7 +58,7 @@ const ResetPassword = () => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen">
+        <Guest>
             <HeaderForm title="Reset Your Password" />
             <form
                 className="flex flex-col justify-center w-full px-4 mx-auto space-y-5 xl:w-1/3 md:w-1/2"
@@ -95,7 +96,7 @@ const ResetPassword = () => {
                     <span>Change Password</span>
                 </ButtonForm>
             </form>
-        </div>
+        </Guest>
     );
 };
 

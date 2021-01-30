@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import userClient from '../../api/users/usersClient';
 import ButtonForm from '../../components/ButtonForm/ButtonForm';
 import HeaderForm from '../../components/HeaderForm/HeaderForm';
 import InputForm from '../../components/InputForm/Inputform';
+import Guest from '../../layouts/Guest/Guest';
 import { getRoute } from '../../routes/routes';
 
 type ErrorsType = {
@@ -21,11 +22,13 @@ const Register = () => {
     );
     const [errors, setErrors] = useState<ErrorsType>();
     const [isLoading, setIsLoading] = useState<boolean>();
+    const hasErrors = useRef(false);
     const history = useHistory();
 
     const register = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsLoading(true);
+        hasErrors.current = false;
         setErrors({ email: [], name: [], password: [] });
         try {
             if (email.trim() && password.trim() && name.trim()) {
@@ -38,6 +41,7 @@ const Register = () => {
                 history.push(getRoute('home').path);
             }
         } catch ({ errors, status }) {
+            hasErrors.current = true;
             if (status === 422) {
                 setErrors(errors);
             } else if (status === 429) {
@@ -55,18 +59,21 @@ const Register = () => {
             }
         } finally {
             setIsLoading(false);
+            if (!hasErrors) {
+                history.push(getRoute('home').path);
+            }
         }
     };
 
     return (
-        <div className="flex flex-col justify-center min-h-screen py-12 bg-gray-50 sm:px-6 lg:px-8">
+        <Guest>
             <HeaderForm
                 title="Create your account"
                 subTitle="Log in with an existing account"
                 link={getRoute('login').path}
             />
             <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-                <div className="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
+                <div className="px-4 py-8 bg-white shadow dark:bg-neutral-700 sm:rounded-lg sm:px-10">
                     <form onSubmit={register} className="space-y-6">
                         <InputForm
                             label="name"
@@ -119,7 +126,7 @@ const Register = () => {
                     </form>
                 </div>
             </div>
-        </div>
+        </Guest>
     );
 };
 

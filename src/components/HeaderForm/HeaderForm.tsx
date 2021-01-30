@@ -11,11 +11,11 @@ const HeaderForm = ({ title, subTitle = '', link = '' }: HeaderFormProps) => {
     return (
         <div className="mb-5 sm:mx-auto sm:w-full sm:max-w-md">
             <Logo className="w-auto h-20 mx-auto" />
-            <h2 className="mt-6 text-3xl font-extrabold text-center text-gray-900 capitalize">
+            <h2 className="mt-6 text-3xl font-extrabold text-center capitalize text-neutral-900 dark:text-neutral-200">
                 {title}
             </h2>
             {subTitle && (
-                <p className="mt-2 text-sm text-center text-gray-600 capitalize max-w">
+                <p className="mt-2 text-sm text-center text-gray-600 capitalize dark:text-neutral-200 max-w">
                     Or
                     {link ? (
                         <Link

@@ -6,7 +6,7 @@ import { getNotification } from '../../redux/notification/notificationSelector';
 import { NotificationStatus } from '../../redux/notification/notificationTypes';
 
 const FlashMessage = () => {
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState<boolean>(false);
     const [icon, setIcon] = useState<JSX.Element | null>();
     const dispatch = useDispatch();
     const notification = useSelector(getNotification);
