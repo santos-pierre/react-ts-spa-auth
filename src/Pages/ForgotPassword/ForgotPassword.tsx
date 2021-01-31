@@ -58,7 +58,7 @@ const ForgotPassword = () => {
                             errors && errors.email ? errors.email[0] : undefined
                         }
                     />
-                    <ButtonForm isLoading={isLoading}>
+                    <ButtonForm isLoading={isLoading} full>
                         <span>Send Reset Link</span>
                     </ButtonForm>
                 </form>

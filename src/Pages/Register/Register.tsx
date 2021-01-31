@@ -120,7 +120,7 @@ const Register = () => {
                             value={passwordConfirmation}
                             handleValue={setPasswordConfirmation}
                         />
-                        <ButtonForm isLoading={isLoading}>
+                        <ButtonForm isLoading={isLoading} full>
                             <span>Register</span>
                         </ButtonForm>
                     </form>

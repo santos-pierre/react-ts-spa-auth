@@ -1,10 +1,10 @@
 type GithubSignInButtonProps = {
-    to: string;
+    to: string | undefined;
 };
 
 const GithubSignInButton = ({ to }: GithubSignInButtonProps) => {
     return (
-        <div>
+        <div className="cursor-pointer">
             <a
                 href={to}
                 className="inline-flex justify-center w-full px-4 py-2 space-x-4 text-sm font-medium text-gray-500 transition-colors duration-300 bg-white border border-gray-300 rounded-md shadow-sm dark:border-neutral-700 hover:bg-neutral-900 hover:text-neutral-50"

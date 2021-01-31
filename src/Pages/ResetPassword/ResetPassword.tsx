@@ -92,7 +92,7 @@ const ResetPassword = () => {
                     value={passwordConfirmation}
                     handleValue={setPasswordConfirmation}
                 />
-                <ButtonForm isLoading={isLoading}>
+                <ButtonForm isLoading={isLoading} full>
                     <span>Change Password</span>
                 </ButtonForm>
             </form>

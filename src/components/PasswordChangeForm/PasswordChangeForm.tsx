@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import userClient from '../../api/users/usersClient';
 import { setNotification } from '../../redux/notification/notificationAction';
+import ButtonForm from '../ButtonForm/ButtonForm';
 import InputForm from '../InputForm/Inputform';
 
 type ErrorsType = {
@@ -18,9 +19,11 @@ const PasswordChangeForm = () => {
         ''
     );
     const [errors, setErrors] = useState<ErrorsType>();
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const updatePassword = async (e: React.FormEvent<HTMLFormElement>) => {
         setErrors({ current_password: [], password: [] });
+        setIsLoading(true);
         e.preventDefault();
         try {
             await userClient.updatePassword({
@@ -50,20 +53,19 @@ const PasswordChangeForm = () => {
                     })
                 );
             }
+        } finally {
+            setIsLoading(false);
         }
     };
 
     return (
         <div className="mt-5 space-y-6 sm:px-6 lg:px-0 lg:col-span-9">
-            <section aria-labelledby="payment_details_heading">
+            <section>
                 <form onSubmit={updatePassword}>
                     <div className="shadow sm:rounded-md sm:overflow-hidden">
                         <div className="px-4 py-6 bg-white dark:bg-neutral-700 sm:p-6 text-neutral-900 dark:text-neutral-200">
                             <div>
-                                <h2
-                                    id="payment_details_heading"
-                                    className="text-lg font-medium leading-6"
-                                >
+                                <h2 className="text-lg font-medium leading-6">
                                     Update Password
                                 </h2>
                             </div>
@@ -105,13 +107,8 @@ const PasswordChangeForm = () => {
                                 />
                             </div>
                         </div>
-                        <div className="px-4 py-3 text-right bg-neutral-50 dark:bg-neutral-600 sm:px-6">
-                            <button
-                                type="submit"
-                                className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm dark:bg-primary-600 bg-primary-500 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-700"
-                            >
-                                Save
-                            </button>
+                        <div className="flex justify-end px-4 py-3 bg-neutral-50 dark:bg-neutral-600 sm:px-6">
+                            <ButtonForm isLoading={isLoading}>Save</ButtonForm>
                         </div>
                     </div>
                 </form>

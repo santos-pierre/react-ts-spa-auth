@@ -92,7 +92,7 @@ const Login = () => {
                                 </Link>
                             </div>
                         </div>
-                        <ButtonForm isLoading={isLoading}>
+                        <ButtonForm isLoading={isLoading} full>
                             <span>Login</span>
                         </ButtonForm>
                     </form>
@@ -108,7 +108,12 @@ const Login = () => {
                             </div>
                         </div>
                         <div className="mt-6">
-                            <GithubSignInButton to="http://localhost/github/auth/login" />
+                            <GithubSignInButton
+                                to={
+                                    process.env.REACT_APP_GITHUB_REDIRECT &&
+                                    'http://localhost/github/auth/login'
+                                }
+                            />
                         </div>
                     </div>
                 </div>

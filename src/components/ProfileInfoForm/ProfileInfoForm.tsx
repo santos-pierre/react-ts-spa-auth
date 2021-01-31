@@ -6,6 +6,7 @@ import { setNotification } from '../../redux/notification/notificationAction';
 import { setCurrentUser } from '../../redux/user/userAction';
 import { getUser } from '../../redux/user/userSelector';
 import { UserState } from '../../redux/user/userTypes';
+import ButtonForm from '../ButtonForm/ButtonForm';
 
 type ErrorsType = {
     email: Array<string> | undefined;
@@ -18,8 +19,10 @@ const ProfileInfoForm = () => {
     const [name, setName] = useState<string>(user.name);
     const [email, setEmail] = useState<string>(user.email);
     const [errors, setErrors] = useState<ErrorsType>();
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const updateProfile = async (e: React.FormEvent<HTMLFormElement>) => {
+        setIsLoading(true);
         setErrors({ email: [], name: [] });
         e.preventDefault();
         try {
@@ -52,20 +55,19 @@ const ProfileInfoForm = () => {
                     })
                 );
             }
+        } finally {
+            setIsLoading(false);
         }
     };
 
     return (
         <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9">
-            <section aria-labelledby="payment_details_heading">
+            <section>
                 <form onSubmit={updateProfile}>
                     <div className="shadow sm:rounded-md sm:overflow-hidden">
                         <div className="px-4 py-6 bg-white dark:bg-neutral-700 sm:p-6 text-neutral-900 dark:text-neutral-200">
                             <div>
-                                <h2
-                                    id="payment_details_heading"
-                                    className="text-lg font-medium leading-6"
-                                >
+                                <h2 className="text-lg font-medium leading-6">
                                     Profile Info
                                 </h2>
                             </div>
@@ -96,24 +98,8 @@ const ProfileInfoForm = () => {
                                 />
                             </div>
                         </div>
-                        <div className="px-4 py-3 text-right bg-neutral-50 dark:bg-neutral-600 sm:px-6">
-                            <button
-                                disabled={
-                                    !(
-                                        user.name !== name ||
-                                        user.email !== email
-                                    )
-                                }
-                                type="submit"
-                                className={`dark:bg-primary-600 bg-primary-500 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-700 ${
-                                    !(
-                                        user.name !== name ||
-                                        user.email !== email
-                                    ) && 'cursor-not-allowed'
-                                }`}
-                            >
-                                Save
-                            </button>
+                        <div className="flex justify-end px-4 py-3 bg-neutral-50 dark:bg-neutral-600 sm:px-6">
+                            <ButtonForm isLoading={isLoading}>Save</ButtonForm>
                         </div>
                     </div>
                 </form>
