@@ -8,7 +8,7 @@ import { ReactComponent as Logo } from './../../logo.svg';
 import { RouteType } from '../../routes/routeTypes';
 import NavLinkMobile from './NavLinkMobile';
 
-const NavBarDesktop = () => {
+const Navbar = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -74,6 +74,7 @@ const NavBarDesktop = () => {
                             </Link>
                         </div>
                         <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+                            {/* Desktop Menu */}
                             {getAllNavLinks().map(
                                 ({ name, path }: RouteType) => {
                                     return (
@@ -102,6 +103,7 @@ const NavBarDesktop = () => {
             */}
             <div className={`${isOpen ? 'block' : 'hidden'} sm:hidden`}>
                 <div className="pt-2 pb-4 space-y-1">
+                    {/* Mobile Menu */}
                     {getAllNavLinks().map(({ name, path }: RouteType) => {
                         return (
                             <NavLinkMobile to={path} exact key={name}>
@@ -121,4 +123,4 @@ const NavBarDesktop = () => {
     );
 };
 
-export default NavBarDesktop;
+export default Navbar;
