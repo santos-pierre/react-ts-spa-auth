@@ -1,5 +1,5 @@
 import { Transition } from '@headlessui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import usersClient from '../../api/users/usersClient';
 import ButtonForm from '../../components/ButtonForm/ButtonForm';
 import HeaderForm from '../../components/HeaderForm/HeaderForm';
@@ -38,6 +38,10 @@ const ForgotPassword = () => {
             setIsLoading(false);
         }
     };
+
+    useEffect(() => {
+        document.title = 'Laravel React SPA - Forgot Password';
+    }, []);
 
     return (
         <Guest>

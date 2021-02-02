@@ -1,6 +1,11 @@
+import { useEffect } from 'react';
 import Auth from '../../layouts/Auth/Auth';
 
 const Dashboard = () => {
+    useEffect(() => {
+        document.title = 'Laravel React SPA - Dashboard';
+    }, []);
+
     return (
         <Auth>
             <header>

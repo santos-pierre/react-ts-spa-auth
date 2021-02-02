@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import userClient from '../../api/users/usersClient';
 import ButtonForm from '../../components/ButtonForm/ButtonForm';
@@ -50,6 +50,10 @@ const Login = () => {
             }
         }
     };
+
+    useEffect(() => {
+        document.title = 'Laravel React SPA - Login';
+    }, []);
 
     return (
         <Guest>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import usersClient from '../../api/users/usersClient';
 import ButtonForm from '../../components/ButtonForm/ButtonForm';
@@ -56,6 +56,10 @@ const ResetPassword = () => {
             setIsLoading(false);
         }
     };
+
+    useEffect(() => {
+        document.title = 'Laravel React SPA - Reset Password';
+    }, []);
 
     return (
         <Guest>
