@@ -38,7 +38,6 @@ const Register = () => {
                     password: password,
                     password_confirmation: passwordConfirmation,
                 });
-                history.push(getRoute('home').path);
             }
         } catch ({ errors, status }) {
             hasErrors.current = true;
