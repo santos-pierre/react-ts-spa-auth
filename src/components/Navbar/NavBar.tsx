@@ -78,25 +78,14 @@ const Navbar = () => {
                         </div>
                         <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                             {/* Desktop Menu */}
-                            {getAllNavLinks().map(
-                                ({ name, path }: RouteType) => {
-                                    if (
-                                        !(
-                                            user.is_github_account &&
-                                            name === 'Profile'
-                                        )
-                                    ) {
-                                        return (
-                                            <NavLinkDesktop
-                                                to={path}
-                                                exact
-                                                key={name}
-                                            >
-                                                {name}
-                                            </NavLinkDesktop>
-                                        );
-                                    }
-                                }
+                            {getAllNavLinks().map(({ name, path }: RouteType) =>
+                                !(
+                                    user.is_github_account && name === 'Profile'
+                                ) ? (
+                                    <NavLinkDesktop to={path} exact key={name}>
+                                        {name}
+                                    </NavLinkDesktop>
+                                ) : null
                             )}
                             <NavLinkDesktop
                                 to={getRoute('login').path}
@@ -114,15 +103,14 @@ const Navbar = () => {
             <div className={`${isOpen ? 'block' : 'hidden'} sm:hidden`}>
                 <div className="pt-2 pb-4 space-y-1">
                     {/* Mobile Menu */}
-                    {getAllNavLinks().map(({ name, path }: RouteType) => {
-                        if (!(user.is_github_account && name === 'Profile')) {
-                            return (
-                                <NavLinkMobile to={path} exact key={name}>
-                                    {name}
-                                </NavLinkMobile>
-                            );
-                        }
-                    })}
+                    {getAllNavLinks().map(({ name, path }) =>
+                        // If this is a Github User remove the profile link to it.
+                        !(user.is_github_account && name === 'Profile') ? (
+                            <NavLinkMobile to={path} exact key={name}>
+                                {name}
+                            </NavLinkMobile>
+                        ) : null
+                    )}
                     <NavLinkMobile
                         to={getRoute('login').path}
                         onClick={logoutUser}
