@@ -4,6 +4,7 @@ export const INITIAL_STATE: UserState = {
     name: '',
     email: '',
     is_verified: false,
+    is_github_account: false,
 };
 
 const userReducer = (state = INITIAL_STATE, action: UserActionTypes) => {

@@ -1,7 +1,12 @@
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import Auth from '../../layouts/Auth/Auth';
+import { getUser } from '../../redux/user/userSelector';
+import { UserState } from '../../redux/user/userTypes';
 
 const Dashboard = () => {
+    const user: UserState = useSelector(getUser);
+
     useEffect(() => {
         document.title = 'Laravel React SPA - Dashboard';
     }, []);
@@ -11,7 +16,7 @@ const Dashboard = () => {
             <header>
                 <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <h1 className="text-3xl font-bold leading-tight">
-                        Dashboard
+                        Hello {user.name}
                     </h1>
                 </div>
             </header>

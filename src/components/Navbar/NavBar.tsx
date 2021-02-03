@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { logout } from '../../redux/user/userAction';
 import { getAllNavLinks, getRoute } from '../../routes/routes';
@@ -7,8 +7,11 @@ import NavLinkDesktop from './NavLinkDesktop';
 import { ReactComponent as Logo } from './../../logo.svg';
 import { RouteType } from '../../routes/routeTypes';
 import NavLinkMobile from './NavLinkMobile';
+import { UserState } from '../../redux/user/userTypes';
+import { getUser } from '../../redux/user/userSelector';
 
 const Navbar = () => {
+    const user: UserState = useSelector(getUser);
     const dispatch = useDispatch();
     const history = useHistory();
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -77,15 +80,22 @@ const Navbar = () => {
                             {/* Desktop Menu */}
                             {getAllNavLinks().map(
                                 ({ name, path }: RouteType) => {
-                                    return (
-                                        <NavLinkDesktop
-                                            to={path}
-                                            exact
-                                            key={name}
-                                        >
-                                            {name}
-                                        </NavLinkDesktop>
-                                    );
+                                    if (
+                                        !(
+                                            user.is_github_account &&
+                                            name === 'Profile'
+                                        )
+                                    ) {
+                                        return (
+                                            <NavLinkDesktop
+                                                to={path}
+                                                exact
+                                                key={name}
+                                            >
+                                                {name}
+                                            </NavLinkDesktop>
+                                        );
+                                    }
                                 }
                             )}
                             <NavLinkDesktop
@@ -105,11 +115,13 @@ const Navbar = () => {
                 <div className="pt-2 pb-4 space-y-1">
                     {/* Mobile Menu */}
                     {getAllNavLinks().map(({ name, path }: RouteType) => {
-                        return (
-                            <NavLinkMobile to={path} exact key={name}>
-                                {name}
-                            </NavLinkMobile>
-                        );
+                        if (!(user.is_github_account && name === 'Profile')) {
+                            return (
+                                <NavLinkMobile to={path} exact key={name}>
+                                    {name}
+                                </NavLinkMobile>
+                            );
+                        }
                     })}
                     <NavLinkMobile
                         to={getRoute('login').path}

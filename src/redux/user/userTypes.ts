@@ -9,6 +9,7 @@ export interface UserState {
     name: string;
     email: string;
     is_verified: boolean;
+    is_github_account: boolean;
 }
 
 export type UserActionTypes = SetUserAction;

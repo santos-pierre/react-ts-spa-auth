@@ -27,7 +27,11 @@ const ProfileInfoForm = () => {
         e.preventDefault();
         try {
             if (user.name !== name || user.email !== email) {
-                await userClient.updateUser({ name: name, email: email });
+                const response = await userClient.updateUser({
+                    name: name,
+                    email: email,
+                });
+                console.log(response);
                 dispatch(
                     setNotification({
                         message: 'Profile Saved',
@@ -40,6 +44,7 @@ const ProfileInfoForm = () => {
                         email: email,
                         name: name,
                         is_verified: false,
+                        is_github_account: false,
                     })
                 );
             }
