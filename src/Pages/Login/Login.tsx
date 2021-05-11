@@ -100,26 +100,25 @@ const Login = () => {
                             <span>Login</span>
                         </ButtonForm>
                     </form>
-                    <div className="mt-6">
-                        <div className="relative">
-                            <div className="absolute inset-0 flex items-center">
-                                <div className="w-full border-t border-gray-300 dark:border-neutral-600"></div>
-                            </div>
-                            <div className="relative flex justify-center text-sm">
-                                <span className="px-2 text-gray-500 bg-white dark:text-neutral-400 dark:bg-neutral-700">
-                                    Or continue with
-                                </span>
-                            </div>
-                        </div>
+                    {process.env.REACT_APP_GITHUB_REDIRECT && (
                         <div className="mt-6">
-                            <GithubSignInButton
-                                to={
-                                    process.env.REACT_APP_GITHUB_REDIRECT &&
-                                    'http://localhost/github/auth/login'
-                                }
-                            />
+                            <div className="relative">
+                                <div className="absolute inset-0 flex items-center">
+                                    <div className="w-full border-t border-gray-300 dark:border-neutral-600"></div>
+                                </div>
+                                <div className="relative flex justify-center text-sm">
+                                    <span className="px-2 text-gray-500 bg-white dark:text-neutral-400 dark:bg-neutral-700">
+                                        Or continue with
+                                    </span>
+                                </div>
+                            </div>
+                            <div className="mt-6">
+                                <GithubSignInButton
+                                    to={process.env.REACT_APP_GITHUB_REDIRECT}
+                                />
+                            </div>
                         </div>
-                    </div>
+                    )}
                 </div>
             </div>
         </Guest>
